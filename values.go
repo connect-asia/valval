@@ -1,7 +1,6 @@
 package valval
 
 import (
-	"gopkg.in/guregu/null.v2"
 	"reflect"
 )
 

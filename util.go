@@ -3,6 +3,7 @@ package valval
 import (
 	"gopkg.in/guregu/null.v2"
 	"reflect"
+	"fmt"
 )
 
 func NewStringValidator(inner func(string) error) ValidatorFunc {
