@@ -101,3 +101,10 @@ func Any(vfuncs ...ValidatorFunc) *ValueValidator {
 		vfuncs: vfuncs,
 	}
 }
+
+func NullString(vfuncs ...ValidatorFunc) *ValueValidator {
+	return &ValueValidator{
+		vt:     t_any,
+		vfuncs: vfuncs,
+	}
+}

@@ -3,6 +3,7 @@ package valval
 import (
 	"errors"
 	"fmt"
+	"gopkg.in/guregu/null.v2"
 	"regexp"
 	"unicode/utf8"
 )
@@ -139,4 +140,13 @@ func RequiredFields(fs ...string) ObjectValidatorFunc {
 		}
 		return nil
 	}
+}
+
+func NuullableMinLength(min int) ValidatorFunc {
+	return NewNullStringValidator(func(str null.String) error {
+		if utf8.RuneCountInString(str.String) < min {
+			return errf("length must be %d or greater", min)
+		}
+		return nil
+	})
 }

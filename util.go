@@ -65,3 +65,20 @@ func NewBoolValidator(inner func(bool) error) ValidatorFunc {
 		return typeMissmatchError("integer")
 	}
 }
+
+func NewNullStringValidator(inner func(null.String) error) ValidatorFunc {
+	return func(val interface{}) error {
+		if val == nil {
+			return nil
+		}
+
+		rv := reflect.ValueOf(val)
+		if rv.Kind() == reflect.Struct {
+			return inner(val.(null.String))
+		} else if rv.Kind() == reflect.String {
+			return inner(null.NewString(rv.String(), true))
+		}
+		fmt.Println(rv.Kind())
+		return typeMissmatchError("string")
+	}
+}
