@@ -1,6 +1,9 @@
 package valval
 
-import "reflect"
+import (
+	"gopkg.in/guregu/null.v2"
+	"reflect"
+)
 
 func NewStringValidator(inner func(string) error) ValidatorFunc {
 	return func(val interface{}) error {
