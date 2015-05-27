@@ -150,3 +150,13 @@ func NuullableMinLength(min int) ValidatorFunc {
 		return nil
 	})
 }
+
+
+func NuullableMaxLength(min int) ValidatorFunc {
+	return NewNullStringValidator(func(str null.String) error {
+		if utf8.RuneCountInString(str.String) > min {
+			return errf("length must be %d or greater", min)
+		}
+		return nil
+	})
+}
