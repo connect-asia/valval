@@ -3,7 +3,6 @@ package valval
 import (
 	"gopkg.in/guregu/null.v2"
 	"reflect"
-	"fmt"
 )
 
 func NewStringValidator(inner func(string) error) ValidatorFunc {
@@ -82,7 +81,6 @@ func NewNullStringValidator(inner func(null.String) error) ValidatorFunc {
 		} else if rv.Kind() == reflect.String {
 			return inner(null.NewString(rv.String(), true))
 		}
-		fmt.Println(rv.Kind())
 		return typeMissmatchError("string")
 	}
 }
