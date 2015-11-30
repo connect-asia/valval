@@ -3,7 +3,7 @@ package valval
 import (
 	"errors"
 	"fmt"
-	"gopkg.in/guregu/null.v2"
+	"gopkg.in/guregu/null.v3"
 	"regexp"
 	"unicode/utf8"
 )
