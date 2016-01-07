@@ -136,6 +136,14 @@ func RequiredFields(fs ...string) ObjectValidatorFunc {
 		for _, f := range fs {
 			if content[f] == nil {
 				return errf("field %s is required", f)
+			}else if v, ok := content[f].(null.String); ok && !(v.Valid) {
+				return errf("field %s is required", f)
+			}else if v, ok := content[f].(null.Int); ok && !(v.Valid) {
+				return errf("field %s is required", f)
+			}else if v, ok := content[f].(null.Float); ok && !(v.Valid) {
+				return errf("field %s is required", f)
+			}else if v, ok := content[f].(null.Time); ok && !(v.Valid) {
+				return errf("field %s is required", f)
 			}
 		}
 		return nil
